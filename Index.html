@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hybrid Master 51</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #07101a;
+            color: white;
+            padding: 20px;
+            padding-bottom: 100px;
+        }
+        .container { max-width: 900px; margin: auto; }
+        .title { font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem; color: #00e5ff; }
+        .card {
+            background: #0d1821;
+            border-radius: 12px;
+            border: 1px solid #1e2936;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        .btn {
+            background: #00e5ff;
+            color: black;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            border: none;
+            font-size: 1.1rem;
+            text-align: center;
+            display: block;
+            margin: 0.5rem 0;
+            font-weight: 700;
+        }
+        .week-display {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #00e5ff;
+            text-align: center;
+            margin: 1rem 0;
+        }
+        .nav { display: flex; gap: 0.5rem; margin: 1rem 0; }
+        .nav-btn {
+            flex: 1;
+            padding: 0.75rem;
+            border-radius: 12px;
+            border: 1px solid #1e2936;
+            background: transparent;
+            color: white;
+        }
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #0d1821;
+            border-top: 1px solid #1e2936;
+            display: flex;
+            justify-content: space-around;
+            padding: 1rem;
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Hybrid Master 51</h1>
+        <div class="card">
+            <div style="text-align: center;">
+                <div style="color: #8a99c0;">SEMAINE ACTUELLE</div>
+                <div class="week-display" id="weekDisplay">1</div>
+                <div style="color: #00e5ff; font-weight: 600;" id="blockName">Fondation (B1)</div>
+            </div>
+            <div class="nav">
+                <button class="nav-btn" onclick="changeWeek(-1)">← Semaine précédente</button>
+                <button class="nav-btn" onclick="changeWeek(1)">Semaine suivante →</button>
+            </div>
+        </div>
+
+        <h2 style="margin: 1.5rem 0 1rem 0;">Séances de la semaine</h2>
+        <div class="card" onclick="startWorkout('dimanche')">
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Dimanche</h3>
+            <div style="color: #8a99c0;">Dos + Jambe Lourds</div>
+            <div style="color: #00e5ff; margin-top: 0.5rem;">4 exercices <small>Tap pour démarrer</small></div>
+        </div>
+        <div class="card" onclick="startWorkout('mardi')">
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Mardi</h3>
+            <div style="color: #8a99c0;">Pecs + Épaules + Triceps</div>
+            <div style="color: #00e5ff; margin-top: 0.5rem;">4 exercices <small>Tap pour démarrer</small></div>
+        </div>
+        <div class="card" onclick="startWorkout('vendredi')">
+            <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Vendredi</h3>
+            <div style="color: #8a99c0;">Dos + Jambes + Bras</div>
+            <div style="color: #00e5ff; margin-top: 0.5rem;">4 exercices <small>Tap pour démarrer</small></div>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <div class="nav-item" onclick="showScreen('home')">
+            <div style="font-size: 1.5rem;">🏠</div>
+            <div>Accueil</div>
+        </div>
+        <div class="nav-item" onclick="showScreen('program')">
+            <div style="font-size: 1.5rem;">📅</div>
+            <div>Programme</div>
+        </div>
+        <div class="nav-item" onclick="alert('Progrès - en développement')">
+            <div style="font-size: 1.5rem;">📈</div>
+            <div>Progrès</div>
+        </div>
+    </div>
+
+    <script>
+        let currentWeek = 1;
+
+        function changeWeek(delta) {
+            currentWeek = Math.max(1, Math.min(26, currentWeek + delta));
+            document.getElementById('weekDisplay').textContent = currentWeek;
+            document.getElementById('blockName').textContent = getBlockName(currentWeek);
+        }
+
+        function getBlockName(week) {
+            if ([6,12,18,24,26].includes(week)) return "DELOAD";
+            if (week <= 5) return "Fondation (B1)";
+            if (week <= 11) return "Surcharge (B2)";
+            if (week <= 25) return "Intensification (B3)";
+            return "Cycle Terminé";
+        }
+
+        function startWorkout(day) {
+            const workouts = {
+                dimanche: "Dos + Jambe Lourds",
+                mardi: "Pecs + Épaules + Triceps",
+                vendredi: "Dos + Jambe léger + Bras"
+            };
+            alert(`Séance du ${day} : ${workouts[day]}\n\nRemplis tes séries et profite de l'entraînement !`);
+        }
+
+        function showScreen(screen) {
+            if (screen === 'program') {
+                alert(`<pre>DIMANCHE - Dos + Jambe Lourds:
+  Trap Bar Deadlift: 4x6-8 (150s)
+  Goblet Squat: 4x10 (90s)
+  Leg Press: 4x10 (90s)
+  Lat Pulldown: 3x10 (90s)
+
+MARDI - Pecs + Épaules + Triceps:
+  Dumbbell Press: 4x10 (120s)
+  Leg Press Légère: 3x15 (75s)
+  Close-Grip Bench: 3x10 (90s)
+  Lateral Raise: 3x15 (60s)
+
+VENDEDREDI - Dos + Jambe léger + Bras:
+  Landmine Row: 4x10 (120s)
+  Leg Curl: 3x12 (75s)
+  Romanian Deadlift: 3x10 (90s)
+  Lat Extension: 3x15 (60s)</pre>`);
+            }
+        }
+    </script>
+</body>
+</html>
