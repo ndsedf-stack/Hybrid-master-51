@@ -1,24 +1,13 @@
-name: Deploy to GitHub Pages
+name: Deprecated: Deploy to GitHub Pages (disabled)
 
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
 
 jobs:
-  deploy:
+  disabled:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Configure Pages
-        uses: actions/configure-pages@v3
-
-      - name: Upload site artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: .   # publish repository root (index.html at repo root)
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+      - name: Disabled
+        run: |
+          echo "This workflow was disabled because it used deprecated actions (upload-artifact v3)."
+          echo "The repository now uses .github/workflows/deploy-gh-pages.yml (peaceiris/actions-gh-pages) for Pages deployment."
