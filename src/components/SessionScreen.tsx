@@ -1,0 +1,1 @@
+Add SessionScreen React component
