@@ -1,92 +1,20 @@
 <!doctype html>
 <html lang="fr">
 <head>
-   <meta charset="utf-8" />
-   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
-   <title>Hybrid Master 51 — App Premium</title>
-   <script src="https://cdn.tailwindcss.com"></script>
-   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-   <link rel="stylesheet" href="style.css">
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+    <title>Hybrid Master 51 — App Premium</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-   <div id="home" class="screen active">
-       <div class="max-w-4xl mx-auto p-2">
-           <header class="mb-4 text-center">
-               <h1 class="text-3xl font-extrabold title-glow">🏆 HYBRID MASTER 51</h1>
-               <p class="muted">Votre programme d'hypertrophie et de force.</p>
-           </header>
-           <div class="grid md:grid-cols-3 gap-4 mb-4">
-               <div class="card md:col-span-2">
-                   <div class="flex justify-between items-center">
-                       <div>
-                           <div class="font-bold text-lg">Semaine <span id="weekDisplay">1</span></div>
-                           <div id="blockName" class="muted small">Bloc</div>
-                       </div>
-                       <div class="flex gap-2">
-                           <button id="prevWeek" class="btn btn-ghost">← Précédente</button>
-                           <button id="advanceWeek" class="btn">Suivante →</button>
-                       </div>
-                   </div>
-                   <hr class="my-3 border-gray-800"/>
-                   <div id="progList" class="grid grid-cols-1 sm:grid-cols-3 gap-2"></div>
-               </div>
-               <div class="card relative">
-                   <div class="font-bold">Visualisation Musculaire</div>
-                   <select id="muscleSelect" class="w-full mt-2"></select>
-                   <div class="anatomy-container grid grid-cols-2 gap-2 mt-2">
-                       <div id="anatomy-front"></div>
-                       <div id="anatomy-back"></div>
-                   </div>
-                   <div class="flex justify-center gap-4 mt-2 small">
-                       <span class="flex items-center gap-2"><div class="w-3 h-3 rounded-full" style="background:var(--highlight-direct)"></div>Direct</span>
-                       <span class="flex items-center gap-2"><div class="w-3 h-3 rounded-full" style="background:var(--highlight-indirect)"></div>Indirect</span>
-                   </div>
-                   <div id="muscle-tooltip-container"></div>
-               </div>
-           </div>
-           <div class="card">
-               <div class="font-bold">Tableau de Bord</div>
-               <div id="quickMsg" class="muted small mt-2">Prêt.</div>
-               <div class="mt-3 flex flex-wrap gap-2">
-                   <button id="openStats" class="btn btn-ghost">📈 Poids Actuels</button>
-                   <button id="exportWeights" class="btn btn-ghost">💾 Exporter .csv</button>
-                   <button id="openAllGraphs" class="btn btn-ghost">📊 Graphes</button>
-                   <button id="resetApp" class="btn btn-ghost">⚠️ Reset</button>
-               </div>
-           </div>
-       </div>
-   </div>
-   <div id="session" class="screen">
-       <div class="max-w-4xl mx-auto p-2">
-           <div class="flex justify-between items-center mb-4">
-               <button class="btn btn-ghost" id="backHomeBtn">← Retour</button>
-               <div class="title-glow font-bold text-lg text-center" id="sessionTitle">Séance</div>
-               <button id="addExerciseBtn" class="btn">➕ Ajouter</button>
-           </div>
-           <div id="exerciseList" class="space-y-3"></div>
-       </div>
-   </div>
-   <div id="modal">
-       <div class="modal-card" id="modalContent"></div>
-   </div>
-   <div id="restTimer">
-       <div class="relative w-16 h-16">
-           <svg class="w-full h-full" viewBox="0 0 100 100">
-               <circle class="text-gray-700" stroke-width="8" stroke="currentColor" fill="transparent" r="45" cx="50" cy="50" />
-               <circle id="timerProgress" class="text-amber-500" stroke-width="8" stroke-linecap="round" stroke="currentColor" fill="transparent" r="45" cx="50" cy="50" />
-           </svg>
-           <div id="timerText" class="absolute inset-0 flex items-center justify-center text-lg font-bold"></div>
-       </div>
-       <div>
-           <div class="font-bold" id="nextExerciseName">Prochain exercice</div>
-           <div class="muted small">Temps de repos</div>
-       </div>
-       <button id="skipTimerBtn" class="btn btn-ghost">Passer</button>
-   </div>
-
-   <script src="app.js"></script>
+    <div id="app-container"></div>
+    <div id="modal-container"></div>
+    <div id="timer-container"></div>
+    <script src="script.js"></script>
 </body>
 </html>
